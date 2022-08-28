@@ -1,0 +1,27 @@
+*****************************
+* Lab 5 Synthesis Questions *
+*****************************
+Name(s): Edison Leung 
+NetID(s): 2136014
+
+
+-----------------------------------------------------------
+1) Alignment: 16 bytes
+   Reasoning:  
+Because the address of the beginning of the payload must be a multiple of the alignment size and the address will increment at that rate, I 
+was able to get the alignment size of the allocator by passing in
+different size values for the malloc() statement. When I called 
+malloc(24), the starting address for the beginning of the payload for 
+class_grade was 0x4056d0. Then when I called malloc(25), the starting address changed to 0x4056e0. Since the difference of these starting 
+addresses are 16 bytes I was able to tell that the alignment is 16 
+bytes.
+-----------------------------------------------------------
+2) Boundary Tag Size: 8 bytes
+   Reasoning:
+Since I determined the alignment size as 16, I could assume that each
+block size was 16 bytes. When I called malloc(24), the original addresssize (0x4056d0) would seem to increment (as it is over 16 bytes) to theaddress 0x4056e0. However, it does not increment so I could reason thatthe Boundary Tag Size was 8 bytes. I checked this by calling malloc(40). Since the alignment is 16 bytes and I was guessing that the boundary tag was 8 bytes, the new starting address should be 0x4056e0 to 
+accomadate the new data and when I would call malloc(41), the starting
+address should be 0x4056f0. When I tested this out, I got what I was 
+expected which is why I can reason that the boundary tag size is 8 
+bytes.
+-----------------------------------------------------------

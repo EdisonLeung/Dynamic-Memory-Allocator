@@ -1,0 +1,66 @@
+*****************************
+* Lab 4 Synthesis Questions *
+*****************************
+Name(s): Edison Leung 
+NetID(s): 2136014
+
+
+-----------------------------------------------------------
+1) Instructions in the nested loops that access memory
+   lab0.d: 16
+   List of instructions for lab0.d:
+		mov    %rax,-0x30(%rbp)
+		movl   $0x0,-0x14(%rbp)
+		mov    -0x14(%rbp),%edx
+		movl   $0x0,-0x18(%rbp)
+		movl   $0x0,-0x1c(%rbp)
+		mov    -0x18(%rbp),%eax
+		mov    -0x1c(%rbp),%edx
+		mov    -0x18(%rbp),%ecx
+		mov    -0x28(%rbp),%rax
+		mov    %edx,(%rax)
+		addl   $0x1,-0x1c(%rbp)
+		addl   $0x1,-0x18(%rbp)
+		addl   $0x1,-0x14(%rbp)
+		cmpl   $0x1f3,-0x1c(%rbp)
+		cmpl   $0x1f3,-0x18(%rbp)
+		cmpl   $0x1f3,-0x14(%rbp)
+   lab0opt.d: 5
+   List of instructions for lab0opt.d:
+		lea    0xf4240(%rbp),%rax
+		lea    -0xf4240(%rax),%rsi
+		lea    (%rdi,%rdx,1),%ecx
+		mov    %ecx,(%rsi,%rdx,4)
+		lea    0xf4240(%rsi),%rax
+-----------------------------------------------------------
+2) Where are the loop variables stored in lab0.d:
+   i: -0x14(%rbp)
+   j: -0x18(%rbp) 
+   k: -0x1c(%rbp)
+-----------------------------------------------------------
+3) Corresponding values in lab0opt.d:
+   %edx: the loop variable k 
+   %ecx: the sum of the loop variables i+j+k
+-----------------------------------------------------------
+4) Effect on number of misses: Increase
+
+   Explain:
+	Since the starting address of the matrix is offset from the beginning of the cache block, there would be 2 cache images generated and thus would cause more misses. Originally the 32x32 matrix would only require one cache image 
+(as the cache image is 32x32) and thus would have minimal misses. However, when the addresses become offset from the 
+beginning of the block, another cache image would be required to store the matrix data and it would cause additional
+misses to get the data from the second image, increasing the number of misses
+
+
+-----------------------------------------------------------
+5) Effect on number of misses: Increase
+
+   Explain:
+	Since the cache image can only hold a 32x32 matrix, the 64x64 matrix will use 4 cache images. However, the 
+57x71 matrix will use more than 4 cache images. Since there are more cache images, there will be more misses as more 
+blocks will be evicted and brought in thus increasing the amount of cache misses.
+	
+	 
+
+
+
+-----------------------------------------------------------
